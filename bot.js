@@ -71,6 +71,10 @@ bot.on('message', function (message) {
                 "value": "Pull a random number for every user from 1-max"
             },
             {
+                "name": "!rollvoice [max|100]",
+                "value": "Pull a random number for every user in the first voice channel from 1-max"
+            },
+            {
                 "name": "!gifadd [command] [image_url]",
                 "value": "Add a gif tied to a command"
             }
@@ -140,6 +144,53 @@ bot.on('message', function (message) {
                 max = args.length > 0 ? args[0] : 100;
                 if (isNaN(max)) {
                     message.channel.send("Invalid Syntax, use `!rollall [number]`");
+                } else {
+
+                    var text = "```";
+                    var scores = [];
+                    var maxLength = 0;
+                    for (var i in users) {
+                        var user = users[i].user;
+                        if (user.bot) {
+                            continue;
+                        }
+                        scores.push([user.username, getRandomInt(max)]);
+                        maxLength = user.username.length > maxLength ? user.username.length : maxLength;
+                    }
+                    scores.sort(function(a,b) {
+                        return b[1] - a[1];
+                    });
+
+                    for (i = 0; i < scores.length; i++) {
+                        text +=  getSpacedText(scores[i][0], maxLength) + " rolled a " + scores[i][1] + "\n";
+                    }
+
+                    text += "```";
+                    message.channel.send(text);
+                }
+                break;
+            case 'rollvoice':
+                var channels = message.guild.channels.array();
+                var channel = false;
+
+                for (var i = 0; i < channels.length; i++) {
+                    if (channels[i].type === 'voice') {
+                        channel = channels[i];
+                        break;
+                    }
+                }
+
+                if (!channel) {
+                    message.channel.send("No Voice Channels");
+                    return;
+                }
+
+                var users = channel.members.array();
+                max = args.length > 0 ? args[0] : 100;
+                if (isNaN(max)) {
+                    message.channel.send("Invalid Syntax, use `!rollall [number]`");
+                } else if (users.length === 0) {
+                    message.channel.send("No users in the voice channel");
                 } else {
 
                     var text = "```";
