@@ -1,0 +1,12 @@
+{
+  "name": "meme-machine",
+  "version": "1.0.0",
+  "description": "Meme Machine Discord bot",
+  "main": "bot.js",
+  "author": "Delta",
+  "dependencies": {
+    "discord.js": "*",
+    "winston": "2.4.0",
+    "mysql": "2.15.0"
+  }
+}
