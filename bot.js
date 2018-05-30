@@ -234,13 +234,13 @@ bot.on('message', function (message) {
                             .getStatsBR(args[0], "pc")
                             .then(function (stats) {
                                 message.channel.send("```" +
-                                    getSpacedText('Stat', 9, false) + ' | ' + getSpacedText('Solos', 7, true) + " | " + getSpacedText('Duos', 7, true) + " | " + getSpacedText("Squads", 7, true) + "\n" +
+                                    getSpacedText('Stat', 9, true) + ' | ' + getSpacedText('Solos', 7, false) + " | " + getSpacedText('Duos', 7, false) + " | " + getSpacedText("Squads", 7, false) + "\n" +
                                     "----------|---------|---------|--------\n" +
-                                    getSpacedText('Matches', 9, false) + ' | ' + getSpacedText(stats.group.solo.matches, 7, true) + " | " + getSpacedText(stats.group.duo.matches, 7, true) + " | " + getSpacedText(stats.group.squad.matches, 7, true) + "\n" +
-                                    getSpacedText('Wins', 9, false) + ' | ' + getSpacedText(stats.group.solo.wins, 7, true) + " | " + getSpacedText(stats.group.duo.wins, 7, true) + " | " + getSpacedText(stats.group.squad.wins, 7, true) + "\n" +
-                                    getSpacedText('Win %', 9, false) + ' | ' + getSpacedText(stats.group.solo['win%'], 7, true) + " | " + getSpacedText(stats.group.duo['win%'], 7, true) + " | " + getSpacedText(stats.group.squad['win%'], 7, true) + "\n" +
-                                    getSpacedText('Kills', 9, false) + ' | ' + getSpacedText(stats.group.solo.kills, 7, true) + " | " + getSpacedText(stats.group.duo.kills, 7, true) + " | " + getSpacedText(stats.group.squad.kills, 7, true) + "\n" +
-                                    getSpacedText('K/D', 9, false) + ' | ' + getSpacedText(stats.group.solo['k/d'], 7, true) + " | " + getSpacedText(stats.group.duo['k/d'], 7, true) + " | " + getSpacedText(stats.group.squad['k/d'], 7, true) + "```");
+                                    getSpacedText('Matches', 9, true) + ' | ' + getSpacedText(stats.group.solo.matches, 7, false) + " | " + getSpacedText(stats.group.duo.matches, 7, false) + " | " + getSpacedText(stats.group.squad.matches, 7, false) + "\n" +
+                                    getSpacedText('Wins', 9, true) + ' | ' + getSpacedText(stats.group.solo.wins, 7, false) + " | " + getSpacedText(stats.group.duo.wins, 7, false) + " | " + getSpacedText(stats.group.squad.wins, 7, false) + "\n" +
+                                    getSpacedText('Win %', 9, true) + ' | ' + getSpacedText(stats.group.solo['win%'] + "%", 7, false) + " | " + getSpacedText(stats.group.duo['win%'] + "%", 7, false) + " | " + getSpacedText(stats.group.squad['win%'] + "%", 7, false) + "\n" +
+                                    getSpacedText('Kills', 9, true) + ' | ' + getSpacedText(stats.group.solo.kills, 7, false) + " | " + getSpacedText(stats.group.duo.kills, 7, false) + " | " + getSpacedText(stats.group.squad.kills, 7, false) + "\n" +
+                                    getSpacedText('K/D', 9, true) + ' | ' + getSpacedText(stats.group.solo['k/d'], 7, false) + " | " + getSpacedText(stats.group.duo['k/d'], 7, false) + " | " + getSpacedText(stats.group.squad['k/d'], 7, false) + "```");
                             })
                             .catch(function (err) {
                                 console.log(err);
