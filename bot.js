@@ -233,42 +233,14 @@ bot.on('message', function (message) {
                         fortniteAPI
                             .getStatsBR(args[0], "pc")
                             .then(function (stats) {
-                                message.channel.send({
-                                    "embed": {
-                                        "color": 16760410,
-                                        "author": {
-                                            "name": args[0] + " Fortnite Stats",
-                                            "url": "https://discordapp.com",
-                                            "icon_url": "https://orig00.deviantart.net/2a55/f/2018/082/6/0/fortnite_icon_by_moxalis-dc6pngr.png"
-                                        },
-                                        "fields": [
-                                            {
-                                                "name": getSpacedText('Stat', 9, false) + ' | ' + getSpacedText('Solos', 7, true) + " | " + getSpacedText('Duos', 7, true) + " | " + getSpacedText("Squads", 7, true),
-                                                "value": "----------|---------|---------|--------"
-                                            },
-                                            {
-                                                "name": getSpacedText('Matches', 9, false) + ' | ' + getSpacedText(stats.group.solo.matches, 7, true) + " | " + getSpacedText(stats.group.duo.matches, 7, true) + " | " + getSpacedText(stats.group.squad.matches, 7, true),
-                                                "value": "----------|---------|---------|--------"
-                                            },
-                                            {
-                                                "name": getSpacedText('Wins', 9, false) + ' | ' + getSpacedText(stats.group.solo.wins, 7, true) + " | " + getSpacedText(stats.group.duo.wins, 7, true) + " | " + getSpacedText(stats.group.squad.wins, 7, true),
-                                                "value": "----------|---------|---------|--------"
-                                            },
-                                            {
-                                                "name": getSpacedText('Win %', 9, false) + ' | ' + getSpacedText(stats.group.solo['win%'], 7, true) + " | " + getSpacedText(stats.group.duo['win%'], 7, true) + " | " + getSpacedText(stats.group.squad['win%'], 7, true),
-                                                "value": "----------|---------|---------|--------"
-                                            },
-                                            {
-                                                "name": getSpacedText('Kills', 9, false) + ' | ' + getSpacedText(stats.group.solo.kills, 7, true) + " | " + getSpacedText(stats.group.duo.kills, 7, true) + " | " + getSpacedText(stats.group.squad.kills, 7, true),
-                                                "value": "----------|---------|---------|--------"
-                                            },
-                                            {
-                                                "name": getSpacedText('K/D', 9, false) + ' | ' + getSpacedText(stats.group.solo['k/d'], 7, true) + " | " + getSpacedText(stats.group.duo['k/d'], 7, true) + " | " + getSpacedText(stats.group.squad['k/d'], 7, true),
-                                                "value": "----------|---------|---------|--------"
-                                            }
-                                        ]
-                                    }
-                                });
+                                message.channel.send("```" +
+                                    getSpacedText('Stat', 9, false) + ' | ' + getSpacedText('Solos', 7, true) + " | " + getSpacedText('Duos', 7, true) + " | " + getSpacedText("Squads", 7, true) + "\n" +
+                                    "----------|---------|---------|--------\n" +
+                                    getSpacedText('Matches', 9, false) + ' | ' + getSpacedText(stats.group.solo.matches, 7, true) + " | " + getSpacedText(stats.group.duo.matches, 7, true) + " | " + getSpacedText(stats.group.squad.matches, 7, true) + "\n" +
+                                    getSpacedText('Wins', 9, false) + ' | ' + getSpacedText(stats.group.solo.wins, 7, true) + " | " + getSpacedText(stats.group.duo.wins, 7, true) + " | " + getSpacedText(stats.group.squad.wins, 7, true) + "\n" +
+                                    getSpacedText('Win %', 9, false) + ' | ' + getSpacedText(stats.group.solo['win%'], 7, true) + " | " + getSpacedText(stats.group.duo['win%'], 7, true) + " | " + getSpacedText(stats.group.squad['win%'], 7, true) + "\n" +
+                                    getSpacedText('Kills', 9, false) + ' | ' + getSpacedText(stats.group.solo.kills, 7, true) + " | " + getSpacedText(stats.group.duo.kills, 7, true) + " | " + getSpacedText(stats.group.squad.kills, 7, true) + "\n" +
+                                    getSpacedText('K/D', 9, false) + ' | ' + getSpacedText(stats.group.solo['k/d'], 7, true) + " | " + getSpacedText(stats.group.duo['k/d'], 7, true) + " | " + getSpacedText(stats.group.squad['k/d'], 7, true) + "```");
                             })
                             .catch(function (err) {
                                 console.log(err);
