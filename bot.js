@@ -2,6 +2,21 @@ var Discord = require('discord.js');
 var logger = require('winston');
 var auth = require('./auth.json');
 var mysql = require('mysql');
+var _ = require('lodash');
+
+const Fortnite = require("fortnite-api");
+
+var fortniteAPI = new Fortnite(
+    [
+        auth.fnEmail,
+        auth.fnPass,
+        auth.fnClient,
+        auth.fnLauncher
+    ],
+    {
+        debug: false
+    }
+);
 
 var con = mysql.createConnection({
     host: auth.host,
@@ -77,6 +92,10 @@ bot.on('message', function (message) {
             {
                 "name": "!gifadd [command] [image_url]",
                 "value": "Add a gif tied to a command"
+            },
+            {
+                "name": "!stats [name]",
+                "value": "Get Fortnite Stats"
             }
         ];
 
@@ -87,7 +106,7 @@ bot.on('message', function (message) {
                 break;
             case 'commands':
             case 'help':
-                con.query('SELECT * FROM commands', function(error, results, columns) {
+                con.query('SELECT * FROM commands', function (error, results, columns) {
                     if (error) logger.error(error);
                     for (var i = 0; i < results.length; i++) {
                         fields.push({
@@ -114,13 +133,13 @@ bot.on('message', function (message) {
                 if (args.length < 2) {
                     message.channel.send("Invalid Syntax, use `!gifadd [command] [image_url]`");
                 } else {
-                    con.query('SELECT * FROM commands', function(error, results, fields) {
+                    con.query('SELECT * FROM commands', function (error, results, fields) {
                         if (error) logger.error(error);
                         var commands = processCommands(results);
                         if (commands[cmd]) {
                             message.channel.send("Command already taken");
                         } else {
-                            con.query("INSERT INTO commands (command, type, image_url, description) VALUES ('" + args[0] + "','image','" + args[1] + "','Post a gif')", function(error, results, fields) {
+                            con.query("INSERT INTO commands (command, type, image_url, description) VALUES ('" + args[0] + "','image','" + args[1] + "','Post a gif')", function (error, results, fields) {
                                 if (error) {
                                     message.channel.send("There was an error saving your command");
                                 } else {
@@ -136,7 +155,7 @@ bot.on('message', function (message) {
                 if (isNaN(max)) {
                     message.channel.send("Invalid Syntax, use `!roll [number]`");
                 } else {
-                    message.channel.send("```" + message.author.username + "** rolled a " + getRandomInt(max) + "```");
+                    message.channel.send("```" + message.author.username + " rolled a " + getRandomInt(max) + "```");
                 }
                 break;
             case 'rollall':
@@ -157,12 +176,12 @@ bot.on('message', function (message) {
                         scores.push([user.username, getRandomInt(max)]);
                         maxLength = user.username.length > maxLength ? user.username.length : maxLength;
                     }
-                    scores.sort(function(a,b) {
+                    scores.sort(function (a, b) {
                         return b[1] - a[1];
                     });
 
                     for (i = 0; i < scores.length; i++) {
-                        text +=  getSpacedText(scores[i][0], maxLength) + " rolled a " + scores[i][1] + "\n";
+                        text += getSpacedText(scores[i][0], maxLength) + " rolled a " + scores[i][1] + "\n";
                     }
 
                     text += "```";
@@ -174,14 +193,16 @@ bot.on('message', function (message) {
                 var channel = false;
 
                 for (var i = 0; i < channels.length; i++) {
-                    if (channels[i].type === 'voice') {
+                    var users = channels[i].members.array();
+
+                    if (channels[i].type === 'voice' && _.findIndex(users, {user: {username: message.author.username}}) > -1) {
                         channel = channels[i];
                         break;
                     }
                 }
 
                 if (!channel) {
-                    message.channel.send("No Voice Channels");
+                    message.channel.send("User not in a voice channel");
                     return;
                 }
 
@@ -204,21 +225,106 @@ bot.on('message', function (message) {
                         scores.push([user.username, getRandomInt(max)]);
                         maxLength = user.username.length > maxLength ? user.username.length : maxLength;
                     }
-                    scores.sort(function(a,b) {
+                    scores.sort(function (a, b) {
                         return b[1] - a[1];
                     });
 
                     for (i = 0; i < scores.length; i++) {
-                        text +=  getSpacedText(scores[i][0], maxLength) + " rolled a " + scores[i][1] + "\n";
+                        text += getSpacedText(scores[i][0], maxLength) + " rolled a " + scores[i][1] + "\n";
                     }
 
                     text += "```";
                     message.channel.send(text);
                 }
                 break;
+            case 'stats':
+                if (args.length === 0) {
+                    message.channel.send("Invalid Syntax, use `!stats [name]`");
+                } else {
+
+                    fortniteAPI.login().then(function () {
+
+                        fortniteAPI
+                            .getStatsBR(args[0], "pc")
+                            .then(function (stats) {
+                                message.channel.send({
+                                    "embed": {
+                                        "color": 16760410,
+                                        "author": {
+                                            "name": args[0] + " Fortnite Stats",
+                                            "url": "https://discordapp.com",
+                                            "icon_url": "https://orig00.deviantart.net/2a55/f/2018/082/6/0/fortnite_icon_by_moxalis-dc6pngr.png"
+                                        },
+                                        "fields": [
+                                            {
+                                                "name": "Solos",
+                                                "value": "-----------------"
+                                            },
+                                            {
+                                                "name": "Matches",
+                                                "value": stats.group.solo.matches
+                                            },
+                                            {
+                                                "name": "Wins",
+                                                "value": stats.group.solo.wins + "(" + stats.group.solo['win%'] + "%)"
+                                            },
+                                            {
+                                                "name": "Kills",
+                                                "value": stats.group.solo.kills + "(" + stats.group.solo['k/d'] + " k/d)"
+                                            },
+                                            {
+                                                "name": " ",
+                                                "value": " "
+                                            },
+                                            {
+                                                "name": "Duos",
+                                                "value": "-----------------"
+                                            },
+                                            {
+                                                "name": "Matches",
+                                                "value": stats.group.duo.matches
+                                            },
+                                            {
+                                                "name": "Wins",
+                                                "value": stats.group.duo.wins + "(" + stats.group.duo['win%'] + "%)"
+                                            },
+                                            {
+                                                "name": "Kills",
+                                                "value": stats.group.duo.kills + "(" + stats.group.duo['k/d'] + " k/d)"
+                                            },
+                                            {
+                                                "name": " ",
+                                                "value": " "
+                                            },
+                                            {
+                                                "name": "Squads",
+                                                "value": "-----------------"
+                                            },
+                                            {
+                                                "name": "Matches",
+                                                "value": stats.group.squad.matches
+                                            },
+                                            {
+                                                "name": "Wins",
+                                                "value": stats.group.squad.wins + "(" + stats.group.squad['win%'] + "%)"
+                                            },
+                                            {
+                                                "name": "Kills",
+                                                "value": stats.group.squad.kills + "(" + stats.group.squad['k/d'] + " k/d)"
+                                            }
+                                        ]
+                                    }
+                                });
+                            })
+                            .catch(function (err) {
+                                console.log(err);
+                            });
+                    });
+                }
+                break;
             default:
                 logger.info(cmd);
-                con.query('SELECT * FROM commands', function(error, results, fields) {
+                con.query('SELECT * FROM commands', function (error, results, fields) {
                     if (error) logger.error(error);
                     var commands = processCommands(results);
                     if (!commands[cmd]) {
