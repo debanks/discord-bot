@@ -30,20 +30,6 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max - 1)) + 1;
 }
 
-// Return text with extra spaces up to length
-function getSpacedText(text, length) {
-    var diff = length - text.length;
-    if (diff < 1) {
-        return text;
-    } else {
-        var finished = text;
-        for (var i = 0; i < diff; i++) {
-            finished += " ";
-        }
-        return finished;
-    }
-}
-
 // grab the commands from the results
 function processCommands(results) {
     var commands = {};
@@ -181,7 +167,7 @@ bot.on('message', function (message) {
                     });
 
                     for (i = 0; i < scores.length; i++) {
-                        text += getSpacedText(scores[i][0], maxLength) + " rolled a " + scores[i][1] + "\n";
+                        text += getSpacedText(scores[i][0], maxLength, false) + " rolled a " + scores[i][1] + "\n";
                     }
 
                     text += "```";
@@ -230,7 +216,7 @@ bot.on('message', function (message) {
                     });
 
                     for (i = 0; i < scores.length; i++) {
-                        text += getSpacedText(scores[i][0], maxLength) + " rolled a " + scores[i][1] + "\n";
+                        text += getSpacedText(scores[i][0], maxLength, false) + " rolled a " + scores[i][1] + "\n";
                     }
 
                     text += "```";
@@ -257,60 +243,28 @@ bot.on('message', function (message) {
                                         },
                                         "fields": [
                                             {
-                                                "name": "Solos",
-                                                "value": "-----------------"
+                                                "name": getSpacedText('Stat', 9, false) + ' | ' + getSpacedText('Solos', 7, true) + " | " + getSpacedText('Duos', 7, true) + " | " + getSpacedText("Squads", 7, true),
+                                                "value": "----------|---------|---------|--------"
                                             },
                                             {
-                                                "name": "Matches",
-                                                "value": stats.group.solo.matches
+                                                "name": getSpacedText('Matches', 9, false) + ' | ' + getSpacedText(stats.group.solo.matches, 7, true) + " | " + getSpacedText(stats.group.duo.matches, 7, true) + " | " + getSpacedText(stats.group.squad.matches, 7, true),
+                                                "value": "----------|---------|---------|--------"
                                             },
                                             {
-                                                "name": "Wins",
-                                                "value": stats.group.solo.wins + " (" + stats.group.solo['win%'] + "%)"
+                                                "name": getSpacedText('Wins', 9, false) + ' | ' + getSpacedText(stats.group.solo.wins, 7, true) + " | " + getSpacedText(stats.group.duo.wins, 7, true) + " | " + getSpacedText(stats.group.squad.wins, 7, true),
+                                                "value": "----------|---------|---------|--------"
                                             },
                                             {
-                                                "name": "Kills",
-                                                "value": stats.group.solo.kills + " (" + stats.group.solo['k/d'] + " k/d)"
+                                                "name": getSpacedText('Win %', 9, false) + ' | ' + getSpacedText(stats.group.solo['win%'], 7, true) + " | " + getSpacedText(stats.group.duo['win%'], 7, true) + " | " + getSpacedText(stats.group.squad['win%'], 7, true),
+                                                "value": "----------|---------|---------|--------"
                                             },
                                             {
-                                                "name": "-",
-                                                "value": "-"
+                                                "name": getSpacedText('Kills', 9, false) + ' | ' + getSpacedText(stats.group.solo.kills, 7, true) + " | " + getSpacedText(stats.group.duo.kills, 7, true) + " | " + getSpacedText(stats.group.squad.kills, 7, true),
+                                                "value": "----------|---------|---------|--------"
                                             },
                                             {
-                                                "name": "Duos",
-                                                "value": "-----------------"
-                                            },
-                                            {
-                                                "name": "Matches",
-                                                "value": stats.group.duo.matches
-                                            },
-                                            {
-                                                "name": "Wins",
-                                                "value": stats.group.duo.wins + " (" + stats.group.duo['win%'] + "%)"
-                                            },
-                                            {
-                                                "name": "Kills",
-                                                "value": stats.group.duo.kills + " (" + stats.group.duo['k/d'] + " k/d)"
-                                            },
-                                            {
-                                                "name": "-",
-                                                "value": "-"
-                                            },
-                                            {
-                                                "name": "Squads",
-                                                "value": "-----------------"
-                                            },
-                                            {
-                                                "name": "Matches",
-                                                "value": stats.group.squad.matches
-                                            },
-                                            {
-                                                "name": "Wins",
-                                                "value": stats.group.squad.wins + " (" + stats.group.squad['win%'] + "%)"
-                                            },
-                                            {
-                                                "name": "Kills",
-                                                "value": stats.group.squad.kills + " (" + stats.group.squad['k/d'] + " k/d)"
+                                                "name": getSpacedText('K/D', 9, false) + ' | ' + getSpacedText(stats.group.solo['k/d'], 7, true) + " | " + getSpacedText(stats.group.duo['k/d'], 7, true) + " | " + getSpacedText(stats.group.squad['k/d'], 7, true),
+                                                "value": "----------|---------|---------|--------"
                                             }
                                         ]
                                     }
@@ -341,5 +295,19 @@ bot.on('message', function (message) {
         }
     }
 });
+
+function getSpacedText(text, length, isRight) {
+    var text = text.toString();
+    var diff = length - text.length;
+    if (diff < 1) {
+        return text;
+    } else {
+        var finished = text;
+        for (var i = 0; i < diff; i++) {
+            finished = isRight ? finished + " " : " " + finished;
+        }
+        return finished;
+    }
+}
 
 bot.login(auth.token);
