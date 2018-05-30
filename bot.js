@@ -266,15 +266,15 @@ bot.on('message', function (message) {
                                             },
                                             {
                                                 "name": "Wins",
-                                                "value": stats.group.solo.wins + "(" + stats.group.solo['win%'] + "%)"
+                                                "value": stats.group.solo.wins + " (" + stats.group.solo['win%'] + "%)"
                                             },
                                             {
                                                 "name": "Kills",
-                                                "value": stats.group.solo.kills + "(" + stats.group.solo['k/d'] + " k/d)"
+                                                "value": stats.group.solo.kills + " (" + stats.group.solo['k/d'] + " k/d)"
                                             },
                                             {
-                                                "name": " ",
-                                                "value": " "
+                                                "name": "-",
+                                                "value": "-"
                                             },
                                             {
                                                 "name": "Duos",
@@ -286,15 +286,15 @@ bot.on('message', function (message) {
                                             },
                                             {
                                                 "name": "Wins",
-                                                "value": stats.group.duo.wins + "(" + stats.group.duo['win%'] + "%)"
+                                                "value": stats.group.duo.wins + " (" + stats.group.duo['win%'] + "%)"
                                             },
                                             {
                                                 "name": "Kills",
-                                                "value": stats.group.duo.kills + "(" + stats.group.duo['k/d'] + " k/d)"
+                                                "value": stats.group.duo.kills + " (" + stats.group.duo['k/d'] + " k/d)"
                                             },
                                             {
-                                                "name": " ",
-                                                "value": " "
+                                                "name": "-",
+                                                "value": "-"
                                             },
                                             {
                                                 "name": "Squads",
@@ -306,11 +306,11 @@ bot.on('message', function (message) {
                                             },
                                             {
                                                 "name": "Wins",
-                                                "value": stats.group.squad.wins + "(" + stats.group.squad['win%'] + "%)"
+                                                "value": stats.group.squad.wins + " (" + stats.group.squad['win%'] + "%)"
                                             },
                                             {
                                                 "name": "Kills",
-                                                "value": stats.group.squad.kills + "(" + stats.group.squad['k/d'] + " k/d)"
+                                                "value": stats.group.squad.kills + " (" + stats.group.squad['k/d'] + " k/d)"
                                             }
                                         ]
                                     }
