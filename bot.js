@@ -27,7 +27,7 @@ var con = mysql.createConnection({
 
 // Pull a random int from 1 - max
 function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max - 1)) + 1;
+    return Math.floor(Math.random() * Math.floor(max)) + 1;
 }
 
 // grab the commands from the results
@@ -167,7 +167,7 @@ bot.on('message', function (message) {
                     });
 
                     for (i = 0; i < scores.length; i++) {
-                        text += getSpacedText(scores[i][0], maxLength, false) + " rolled a " + scores[i][1] + "\n";
+                        text += getSpacedText(scores[i][0], maxLength, true) + " rolled a " + scores[i][1] + "\n";
                     }
 
                     text += "```";
@@ -216,7 +216,7 @@ bot.on('message', function (message) {
                     });
 
                     for (i = 0; i < scores.length; i++) {
-                        text += getSpacedText(scores[i][0], maxLength, false) + " rolled a " + scores[i][1] + "\n";
+                        text += getSpacedText(scores[i][0], maxLength, true) + " rolled a " + scores[i][1] + "\n";
                     }
 
                     text += "```";
