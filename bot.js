@@ -174,6 +174,62 @@ bot.on('message', function (message) {
                     message.channel.send(text);
                 }
                 break;
+            case 'teams':
+                var channels = message.guild.channels.array();
+                var channel = false;
+
+                for (var i = 0; i < channels.length; i++) {
+                    var users = channels[i].members.array();
+
+                    if (channels[i].type === 'voice' && _.findIndex(users, {user: {username: message.author.username}}) > -1) {
+                        channel = channels[i];
+                        break;
+                    }
+                }
+
+                if (!channel) {
+                    message.channel.send("User not in a voice channel");
+                    return;
+                }
+
+                var users = channel.members.array();
+                var teamSize = args.length > 0 ? args[0] : 4;
+                max = 100;
+                if (isNaN(max)) {
+                    message.channel.send("Invalid Syntax, use `!rollall [number]`");
+                } else if (users.length === 0) {
+                    message.channel.send("No users in the voice channel");
+                } else {
+
+                    var scores = [];
+                    var maxLength = 0;
+                    for (var i in users) {
+                        var user = users[i].user;
+                        if (user.bot) {
+                            continue;
+                        }
+                        scores.push([user.username, getRandomInt(max)]);
+                        maxLength = user.username.length > maxLength ? user.username.length : maxLength;
+                    }
+
+                    scores.sort(function (a, b) {
+                        return b[1] - a[1];
+                    });
+
+                    var team = 1;
+                    var text = "Team 1\n```";
+                    for (i = 0; i < scores.length; i++) {
+                        text += getSpacedText(scores[i][0], maxLength, true) + "\n";
+                        if (i % teamSize === teamSize - 1 && i < scores.length - 1) {
+                            team++;
+                            text += "```\n\nTeam " + team + "\n```";
+                        }
+                    }
+
+                    text += "```";
+                    message.channel.send(text);
+                }
+                break;
             case 'rollvoice':
                 var channels = message.guild.channels.array();
                 var channel = false;
