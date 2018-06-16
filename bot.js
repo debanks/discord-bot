@@ -218,12 +218,12 @@ bot.on('message', function (message) {
                     });
 
                     var team = 1;
-                    var text = "Team 1\n```";
+                    var text = "\n__**Team 1**__\n```";
                     for (i = 0; i < scores.length; i++) {
                         text += getSpacedText(scores[i][0], maxLength, true) + "\n";
                         if (i % teamSize === teamSize - 1 && i < scores.length - 1) {
                             team++;
-                            text += "```\n\nTeam " + team + "\n```";
+                            text += "```\n__**Team " + team + "**__\n```";
                         }
                     }
 
