@@ -206,10 +206,10 @@ bot.on('message', function (message) {
                     var maxLength = 0;
                     for (var i in users) {
                         var user = users[i].user;
-                        if (user.bot || safe === user.username) {
+                        if (user.bot) {
                             continue;
                         }
-                        scores.push([user.username, getRandomInt(max)]);
+                        scores.push([user.username, safe === user.username ? 100 : getRandomInt(max)]);
                         maxLength = user.username.length > maxLength ? user.username.length : maxLength;
                     }
 
