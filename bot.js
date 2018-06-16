@@ -194,6 +194,7 @@ bot.on('message', function (message) {
 
                 var users = channel.members.array();
                 var teamSize = args.length > 0 ? args[0] : 4;
+                var safe = args.length > 1 ? args[1] : false;
                 max = 100;
                 if (isNaN(max)) {
                     message.channel.send("Invalid Syntax, use `!rollall [number]`");
@@ -205,7 +206,7 @@ bot.on('message', function (message) {
                     var maxLength = 0;
                     for (var i in users) {
                         var user = users[i].user;
-                        if (user.bot) {
+                        if (user.bot || safe === user.username) {
                             continue;
                         }
                         scores.push([user.username, getRandomInt(max)]);
