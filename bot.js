@@ -243,7 +243,7 @@ bot.on('message', function (message) {
                 if (end === false ||
                     (['nw', 'se'].indexOf(start) > -1 && ['nw', 'se'].indexOf(end) > -1 ) ||
                     (['nw', 's'].indexOf(start) > -1 && ['nw', 's'].indexOf(end) > -1 ) ||
-                    (['nw', 'e'].indexOf(start) > -1 && ['nw', 'e'].indexOf(end) > -1 )
+                    (['nw', 'e'].indexOf(start) > -1 && ['nw', 'e'].indexOf(end) > -1 ) ||
                     (['n', 's'].indexOf(start) > -1 && ['n', 's'].indexOf(end) > -1 ) ||
                     (['n', 'sw'].indexOf(start) > -1 && ['n', 'sw'].indexOf(end) > -1 ) ||
                     (['n', 'w'].indexOf(start) > -1 && ['n', 'w'].indexOf(end) > -1 ) ||
@@ -256,7 +256,7 @@ bot.on('message', function (message) {
                 if (end === false ||
                     (['nw', 'se'].indexOf(start) > -1 && ['nw', 'se'].indexOf(end) > -1 ) ||
                     (['nw', 's'].indexOf(start) > -1 && ['nw', 's'].indexOf(end) > -1 ) ||
-                    (['w', 'se'].indexOf(start) > -1 && ['w', 'se'].indexOf(end) > -1 )
+                    (['w', 'se'].indexOf(start) > -1 && ['w', 'se'].indexOf(end) > -1 ) ||
                     (['n', 's'].indexOf(start) > -1 && ['n', 's'].indexOf(end) > -1 ) ||
                     (['n', 'sw'].indexOf(start) > -1 && ['n', 'sw'].indexOf(end) > -1 ) ||
                     (['n', 'w'].indexOf(start) > -1 && ['n', 'w'].indexOf(end) > -1 ) ||
@@ -270,7 +270,7 @@ bot.on('message', function (message) {
                 if (end === false ||
                     (['nw', 'se'].indexOf(start) > -1 && ['nw', 'se'].indexOf(end) > -1 ) ||
                     (['nw', 'e'].indexOf(start) > -1 && ['nw', 'e'].indexOf(end) > -1 ) ||
-                    (['w', 'se'].indexOf(start) > -1 && ['w', 'se'].indexOf(end) > -1 )
+                    (['w', 'se'].indexOf(start) > -1 && ['w', 'se'].indexOf(end) > -1 ) ||
                     (['n', 's'].indexOf(start) > -1 && ['n', 's'].indexOf(end) > -1 ) ||
                     (['n', 'sw'].indexOf(start) > -1 && ['n', 'sw'].indexOf(end) > -1 ) ||
                     (['n', 'e'].indexOf(start) > -1 && ['n', 'e'].indexOf(end) > -1 ) ||
@@ -284,7 +284,7 @@ bot.on('message', function (message) {
                 if (end === false ||
                     (['nw', 'se'].indexOf(start) > -1 && ['nw', 'se'].indexOf(end) > -1 ) ||
                     (['nw', 's'].indexOf(start) > -1 && ['nw', 's'].indexOf(end) > -1 ) ||
-                    (['w', 'se'].indexOf(start) > -1 && ['w', 'se'].indexOf(end) > -1 )
+                    (['w', 'se'].indexOf(start) > -1 && ['w', 'se'].indexOf(end) > -1 ) ||
                     (['n', 's'].indexOf(start) > -1 && ['n', 's'].indexOf(end) > -1 ) ||
                     (['n', 'sw'].indexOf(start) > -1 && ['n', 'sw'].indexOf(end) > -1 ) ||
                     (['ne', 's'].indexOf(start) > -1 && ['ne', 's'].indexOf(end) > -1 ) ||
