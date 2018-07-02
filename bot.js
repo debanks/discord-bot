@@ -174,6 +174,132 @@ bot.on('message', function (message) {
                     message.channel.send(text);
                 }
                 break;
+            case 'fnRand':
+                var locations = [];
+
+                var start = args.length > 0 ? args[0].toLowerCase() : false;
+                var end = args.length > 1 ? args[1].toLowerCase() : false;
+
+                if (start === end) {
+                    end = false;
+                }
+
+                if (end === false || start === 'nw' || end === 'nw') {
+                    locations = locations.concat(['Junk Junction', 'Haunted Hills', 'Pleasant Park']);
+                    if (start === 'nw') {
+                        locations = locations.concat(['Junk Junction', 'Haunted Hills', 'Pleasant Park']);
+                    }
+                }
+
+                if (end === false || start === 'n' || end === 'n') {
+                    locations = locations.concat(['Anarchy Acres']);
+                    if (start === 'n') {
+                        locations = locations.concat(['Anarchy Acres']);
+                    }
+                }
+
+                if (end === false || start === 'ne' || end === 'ne') {
+                    locations = locations.concat(['Risky Reels', 'Wailing Woods', 'Tomato Town']);
+                    if (start === 'ne') {
+                        locations = locations.concat(['Risky Reels', 'Wailing Woods', 'Tomato Town']);
+                    }
+                }
+
+                if (end === false || start === 'w' || end === 'w') {
+                    locations = locations.concat(['Snobby Shores']);
+                    if (start === 'w') {
+                        locations = locations.concat(['Snobby Shores']);
+                    }
+                }
+
+                if (end === false || start === 'sw' || end === 'sw') {
+                    locations = locations.concat(['Greasy Grove', 'Flush Factory', 'Shift Shafts']);
+                    if (start === 'sw') {
+                        locations = locations.concat(['Greasy Grove', 'Flush Factory', 'Shift Shafts']);
+                    }
+                }
+
+                if (end === false || start === 's' || end === 's') {
+                    locations = locations.concat(['Lucky Landing', 'Fatal Fields']);
+                    if (start === 's') {
+                        locations = locations.concat(['Lucky Landing', 'Fatal Fields']);
+                    }
+                }
+
+                if (end === false || start === 'se' || end === 'se') {
+                    locations = locations.concat(['Moisty Mire']);
+                    if (start === 'se') {
+                        locations = locations.concat(['Moisty Mire']);
+                    }
+                }
+
+                if (end === false || start === 'e' || end === 'e') {
+                    locations = locations.concat(['Lonely Lodge', 'Retail Row']);
+                    if (start === 'e') {
+                        locations = locations.concat(['Lonely Lodge', 'Retail Row']);
+                    }
+                }
+
+                if (end === false ||
+                    (['nw', 'se'].indexOf(start) > -1 && ['nw', 'se'].indexOf(end) > -1 ) ||
+                    (['nw', 's'].indexOf(start) > -1 && ['nw', 's'].indexOf(end) > -1 ) || ||
+                    (['nw', 'e'].indexOf(start) > -1 && ['nw', 'e'].indexOf(end) > -1 )
+                    (['n', 's'].indexOf(start) > -1 && ['n', 's'].indexOf(end) > -1 ) ||
+                    (['n', 'sw'].indexOf(start) > -1 && ['n', 'sw'].indexOf(end) > -1 ) ||
+                    (['n', 'w'].indexOf(start) > -1 && ['n', 'w'].indexOf(end) > -1 ) ||
+                    (['ne', 'w'].indexOf(start) > -1 && ['ne', 'w'].indexOf(end) > -1 ) ||
+                    (['w', 'e'].indexOf(start) > -1 && ['w', 'e'].indexOf(end) > -1 )
+                ) {
+                    locations.push('Loot Lake');
+                }
+
+                if (end === false ||
+                    (['nw', 'se'].indexOf(start) > -1 && ['nw', 'se'].indexOf(end) > -1 ) ||
+                    (['nw', 's'].indexOf(start) > -1 && ['nw', 's'].indexOf(end) > -1 ) || ||
+                    (['w', 'se'].indexOf(start) > -1 && ['w', 'se'].indexOf(end) > -1 )
+                    (['n', 's'].indexOf(start) > -1 && ['n', 's'].indexOf(end) > -1 ) ||
+                    (['n', 'sw'].indexOf(start) > -1 && ['n', 'sw'].indexOf(end) > -1 ) ||
+                    (['n', 'w'].indexOf(start) > -1 && ['n', 'w'].indexOf(end) > -1 ) ||
+                    (['ne', 'w'].indexOf(start) > -1 && ['ne', 'w'].indexOf(end) > -1 ) ||
+                    (['ne', 'sw'].indexOf(start) > -1 && ['ne', 'sw'].indexOf(end) > -1 ) ||
+                    (['w', 'e'].indexOf(start) > -1 && ['w', 'e'].indexOf(end) > -1 )
+                ) {
+                    locations.push('Tilted Towers');
+                }
+
+                if (end === false ||
+                    (['nw', 'se'].indexOf(start) > -1 && ['nw', 'se'].indexOf(end) > -1 ) ||
+                    (['nw', 'e'].indexOf(start) > -1 && ['nw', 'e'].indexOf(end) > -1 ) ||
+                    (['w', 'se'].indexOf(start) > -1 && ['w', 'se'].indexOf(end) > -1 )
+                    (['n', 's'].indexOf(start) > -1 && ['n', 's'].indexOf(end) > -1 ) ||
+                    (['n', 'sw'].indexOf(start) > -1 && ['n', 'sw'].indexOf(end) > -1 ) ||
+                    (['n', 'e'].indexOf(start) > -1 && ['n', 'e'].indexOf(end) > -1 ) ||
+                    (['ne', 's'].indexOf(start) > -1 && ['ne', 's'].indexOf(end) > -1 ) ||
+                    (['ne', 'sw'].indexOf(start) > -1 && ['ne', 'sw'].indexOf(end) > -1 ) ||
+                    (['w', 'e'].indexOf(start) > -1 && ['w', 'e'].indexOf(end) > -1 )
+                ) {
+                    locations.push('Dusty Divot');
+                }
+
+                if (end === false ||
+                    (['nw', 'se'].indexOf(start) > -1 && ['nw', 'se'].indexOf(end) > -1 ) ||
+                    (['nw', 's'].indexOf(start) > -1 && ['nw', 's'].indexOf(end) > -1 ) ||
+                    (['w', 'se'].indexOf(start) > -1 && ['w', 'se'].indexOf(end) > -1 )
+                    (['n', 's'].indexOf(start) > -1 && ['n', 's'].indexOf(end) > -1 ) ||
+                    (['n', 'sw'].indexOf(start) > -1 && ['n', 'sw'].indexOf(end) > -1 ) ||
+                    (['ne', 's'].indexOf(start) > -1 && ['ne', 's'].indexOf(end) > -1 ) ||
+                    (['ne', 'sw'].indexOf(start) > -1 && ['ne', 'sw'].indexOf(end) > -1 ) ||
+                    (['e', 'sw'].indexOf(start) > -1 && ['e', 'sw'].indexOf(end) > -1 ) ||
+                    (['e', 's'].indexOf(start) > -1 && ['e', 's'].indexOf(end) > -1 ) ||
+                    (['w', 'e'].indexOf(start) > -1 && ['w', 'e'].indexOf(end) > -1 )
+                ) {
+                    locations.push('Salty Springs');
+                }
+
+                var rand = Math.floor(Math.random() * locations.length);
+                message.channel.send(locations[rand]);
+
+                break;
             case 'teams':
                 var channels = message.guild.channels.array();
                 var channel = false;
@@ -193,10 +319,11 @@ bot.on('message', function (message) {
                 }
 
                 var users = channel.members.array();
-                var teamSize = args.length > 0 ? args[0] : 4;
-                var safe = args.length > 1 ? args[1] : false;
+                var teamSize = args.length > 0 ? parseInt(args[0], 10) : 4;
+                var safe = args.length > 1 ? args.slice(1, args.length).join(' ').toLowerCase() : false;
+
                 max = 100;
-                if (isNaN(max)) {
+                if (isNaN(max) || isNaN(teamSize) || teamSize < 1) {
                     message.channel.send("Invalid Syntax, use `!rollall [number]`");
                 } else if (users.length === 0) {
                     message.channel.send("No users in the voice channel");
@@ -206,10 +333,7 @@ bot.on('message', function (message) {
                     var maxLength = 0;
                     for (var i in users) {
                         var user = users[i].user;
-                        if (user.bot) {
-                            continue;
-                        }
-                        scores.push([user.username, safe === user.username ? 100 : getRandomInt(max)]);
+                        scores.push([user.username, safe === user.username.toLowerCase() ? 101 : getRandomInt(max)]);
                         maxLength = user.username.length > maxLength ? user.username.length : maxLength;
                     }
 
@@ -218,12 +342,12 @@ bot.on('message', function (message) {
                     });
 
                     var team = 1;
-                    var text = "\n__**Team 1**__\n```";
+                    var text = "\n**Team 1**\n```";
                     for (i = 0; i < scores.length; i++) {
                         text += getSpacedText(scores[i][0], maxLength, true) + "\n";
                         if (i % teamSize === teamSize - 1 && i < scores.length - 1) {
                             team++;
-                            text += "```\n__**Team " + team + "**__\n```";
+                            text += "```\n**Team " + team + "**\n```";
                         }
                     }
 
