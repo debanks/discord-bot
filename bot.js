@@ -317,7 +317,7 @@ bot.on('message', function (message) {
                 if (debug === 1) {
                     message.channel.send("```" + locations[rand] + "\n\nChoices: " + locations.toString() + "\nChoice:  " + rand + "```");
                 } else {
-                    message.channel.send("https://s3.us-east-2.amazonaws.com/fortnite-maps/" + locations[rand].replace(' ', '_') + '.jpg');
+                    message.channel.send("https://s3.us-east-2.amazonaws.com/fortnite-maps/" + locations[rand].replace(/ /g, '_') + '.jpg');
                 }
 
                 break;
