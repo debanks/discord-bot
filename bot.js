@@ -174,11 +174,12 @@ bot.on('message', function (message) {
                     message.channel.send(text);
                 }
                 break;
-            case 'fnRand':
+            case 'land':
                 var locations = [];
 
                 var start = args.length > 0 ? args[0].toLowerCase() : false;
                 var end = args.length > 1 ? args[1].toLowerCase() : false;
+                var debug = args.length > 2 ? parseInt(args[2], 10) : 0;
 
                 if (start === end) {
                     end = false;
@@ -297,7 +298,11 @@ bot.on('message', function (message) {
                 }
 
                 var rand = Math.floor(Math.random() * locations.length);
-                message.channel.send(locations[rand]);
+                if (debug === 1) {
+                    message.channel.send("```" + locations[rand] + "\n\nChoices: " + locations.toString() + "\nChoice:  " + rand + "```");
+                } else {
+                    message.channel.send("```" + locations[rand] + "```");
+                }
 
                 break;
             case 'teams':
