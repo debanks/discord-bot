@@ -185,7 +185,7 @@ bot.on('message', function (message) {
                     end = false;
                 }
 
-                if (end === false || start === 'nw' || end === 'nw') {
+                if (end === false || start === 'nw' || end === 'nw' || (['n', 'n'].indexOf(start) > -1 && ['w', 'w'].indexOf(end) > -1 )) {
                     locations = locations.concat(['Junk Junction', 'Haunted Hills', 'Pleasant Park']);
                     if (start === 'nw') {
                         locations = locations.concat(['Junk Junction', 'Haunted Hills', 'Pleasant Park']);
@@ -199,7 +199,7 @@ bot.on('message', function (message) {
                     }
                 }
 
-                if (end === false || start === 'ne' || end === 'ne') {
+                if (end === false || start === 'ne' || end === 'ne' || (['n', 'n'].indexOf(start) > -1 && ['e', 'e'].indexOf(end) > -1 )) {
                     locations = locations.concat(['Risky Reels', 'Wailing Woods', 'Tomato Town']);
                     if (start === 'ne') {
                         locations = locations.concat(['Risky Reels', 'Wailing Woods', 'Tomato Town']);
@@ -213,7 +213,7 @@ bot.on('message', function (message) {
                     }
                 }
 
-                if (end === false || start === 'sw' || end === 'sw') {
+                if (end === false || start === 'sw' || end === 'sw' || (['s', 's'].indexOf(start) > -1 && ['w', 'w'].indexOf(end) > -1 )) {
                     locations = locations.concat(['Greasy Grove', 'Flush Factory', 'Shift Shafts']);
                     if (start === 'sw') {
                         locations = locations.concat(['Greasy Grove', 'Flush Factory', 'Shift Shafts']);
@@ -227,7 +227,7 @@ bot.on('message', function (message) {
                     }
                 }
 
-                if (end === false || start === 'se' || end === 'se') {
+                if (end === false || start === 'se' || end === 'se' || (['s', 's'].indexOf(start) > -1 && ['e', 'e'].indexOf(end) > -1 )) {
                     locations = locations.concat(['Moisty Mire']);
                     if (start === 'se') {
                         locations = locations.concat(['Moisty Mire']);
@@ -292,13 +292,14 @@ bot.on('message', function (message) {
                     (['ne', 'sw'].indexOf(start) > -1 && ['ne', 'sw'].indexOf(end) > -1 ) ||
                     (['e', 'sw'].indexOf(start) > -1 && ['e', 'sw'].indexOf(end) > -1 ) ||
                     (['e', 's'].indexOf(start) > -1 && ['e', 's'].indexOf(end) > -1 ) ||
-                    (['w', 'e'].indexOf(start) > -1 && ['w', 'e'].indexOf(end) > -1 )
+                    (['w', 'e'].indexOf(start) > -1 && ['w', 'e'].indexOf(end) > -1 ) ||
+                    (['n', 'se'].indexOf(start) > -1 && ['n', 'se'].indexOf(end) > -1 )
                 ) {
                     locations.push('Salty Springs');
                 }
 
                 if ((['n', 'se'].indexOf(start) > -1 && ['n', 'se'].indexOf(end) > -1 )) {
-                    locations.push('Retail Row');
+                    locations.concat(['Retail Row', 'Fatal Fields', 'Tomato Town']);
                 }
 
                 var rand = Math.floor(Math.random() * locations.length);
