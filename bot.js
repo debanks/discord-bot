@@ -187,19 +187,26 @@ bot.on('message', function (message) {
 
                 if (start === end) {
                     end = false;
+                    start = false;
+                }
+
+                if (['n', 'nw', 'ne', 'e', 'w', 'sw', 's', 'se'].indexOf(start) === -1 ||
+                    ['n', 'nw', 'ne', 'e', 'w', 'sw', 's', 'se'].indexOf(end) === -1) {
+                    end = false;
+                    start = false;
                 }
 
                 if (end === false || start === 'nw' || end === 'nw' || (['n', 'n'].indexOf(start) > -1 && ['w', 'w'].indexOf(end) > -1 )) {
-                    locations = locations.concat(['Junk Junction', 'Haunted Hills', 'Pleasant Park']);
+                    locations = locations.concat(['Junk Junction', 'Haunted Hills', 'Pleasant Park', 'Large Soccer Stadium']);
                     if (start === 'nw') {
-                        locations = locations.concat(['Junk Junction', 'Haunted Hills', 'Pleasant Park']);
+                        locations = locations.concat(['Junk Junction', 'Haunted Hills', 'Pleasant Park', 'Large Soccer Stadium']);
                     }
                 }
 
                 if (end === false || start === 'n' || end === 'n' || (['nw', 'ne'].indexOf(start) > -1 && ['nw', 'ne'].indexOf(end) > -1 )) {
-                    locations = locations.concat(['Anarchy Acres']);
+                    locations = locations.concat(['Anarchy Acres', 'Motel']);
                     if (start === 'n') {
-                        locations = locations.concat(['Anarchy Acres']);
+                        locations = locations.concat(['Anarchy Acres', 'Motel']);
                     }
                 }
 
@@ -211,16 +218,16 @@ bot.on('message', function (message) {
                 }
 
                 if (end === false || start === 'w' || end === 'w' || (['nw', 'sw'].indexOf(start) > -1 && ['nw', 'sw'].indexOf(end) > -1 )) {
-                    locations = locations.concat(['Snobby Shores']);
+                    locations = locations.concat(['Snobby Shores', 'Small Soccer Stadium']);
                     if (start === 'w') {
-                        locations = locations.concat(['Snobby Shores']);
+                        locations = locations.concat(['Snobby Shores', 'Small Soccer Stadium']);
                     }
                 }
 
                 if (end === false || start === 'sw' || end === 'sw' || (['s', 's'].indexOf(start) > -1 && ['w', 'w'].indexOf(end) > -1 )) {
-                    locations = locations.concat(['Greasy Grove', 'Flush Factory', 'Shift Shafts']);
+                    locations = locations.concat(['Greasy Grove', 'Flush Factory', 'Shifty Shafts', 'Dance Factories']);
                     if (start === 'sw') {
-                        locations = locations.concat(['Greasy Grove', 'Flush Factory', 'Shift Shafts']);
+                        locations = locations.concat(['Greasy Grove', 'Flush Factory', 'Shifty Shafts', 'Dance Factories']);
                     }
                 }
 
@@ -232,16 +239,16 @@ bot.on('message', function (message) {
                 }
 
                 if (end === false || start === 'se' || end === 'se' || (['s', 's'].indexOf(start) > -1 && ['e', 'e'].indexOf(end) > -1 )) {
-                    locations = locations.concat(['Moisty Mire']);
+                    locations = locations.concat(['Moisty Mire', 'Prison']);
                     if (start === 'se') {
-                        locations = locations.concat(['Moisty Mire']);
+                        locations = locations.concat(['Moisty Mire', 'Prison']);
                     }
                 }
 
                 if (end === false || start === 'e' || end === 'e' || (['ne', 'se'].indexOf(start) > -1 && ['ne', 'se'].indexOf(end) > -1 )) {
-                    locations = locations.concat(['Lonely Lodge', 'Retail Row']);
+                    locations = locations.concat(['Lonely Lodge', 'Retail Row', 'Metal Containers']);
                     if (start === 'e') {
-                        locations = locations.concat(['Lonely Lodge', 'Retail Row']);
+                        locations = locations.concat(['Lonely Lodge', 'Retail Row', 'Metal Containers']);
                     }
                 }
 
@@ -310,7 +317,7 @@ bot.on('message', function (message) {
                 if (debug === 1) {
                     message.channel.send("```" + locations[rand] + "\n\nChoices: " + locations.toString() + "\nChoice:  " + rand + "```");
                 } else {
-                    message.channel.send("```" + locations[rand] + "```");
+                    message.channel.send("https://s3.us-east-2.amazonaws.com/fortnite-maps/" + locations[rand].replace(' ', '_') + '.jpg');
                 }
 
                 break;
