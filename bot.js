@@ -192,7 +192,7 @@ bot.on('message', function (message) {
                     }
                 }
 
-                if (end === false || start === 'n' || end === 'n') {
+                if (end === false || start === 'n' || end === 'n' || (['nw', 'ne'].indexOf(start) > -1 && ['nw', 'ne'].indexOf(end) > -1 )) {
                     locations = locations.concat(['Anarchy Acres']);
                     if (start === 'n') {
                         locations = locations.concat(['Anarchy Acres']);
@@ -206,7 +206,7 @@ bot.on('message', function (message) {
                     }
                 }
 
-                if (end === false || start === 'w' || end === 'w') {
+                if (end === false || start === 'w' || end === 'w' || (['nw', 'sw'].indexOf(start) > -1 && ['nw', 'sw'].indexOf(end) > -1 )) {
                     locations = locations.concat(['Snobby Shores']);
                     if (start === 'w') {
                         locations = locations.concat(['Snobby Shores']);
@@ -220,7 +220,7 @@ bot.on('message', function (message) {
                     }
                 }
 
-                if (end === false || start === 's' || end === 's') {
+                if (end === false || start === 's' || end === 's' || (['sw', 'se'].indexOf(start) > -1 && ['sw', 'se'].indexOf(end) > -1 )) {
                     locations = locations.concat(['Lucky Landing', 'Fatal Fields']);
                     if (start === 's') {
                         locations = locations.concat(['Lucky Landing', 'Fatal Fields']);
@@ -234,7 +234,7 @@ bot.on('message', function (message) {
                     }
                 }
 
-                if (end === false || start === 'e' || end === 'e') {
+                if (end === false || start === 'e' || end === 'e' || (['ne', 'se'].indexOf(start) > -1 && ['ne', 'se'].indexOf(end) > -1 )) {
                     locations = locations.concat(['Lonely Lodge', 'Retail Row']);
                     if (start === 'e') {
                         locations = locations.concat(['Lonely Lodge', 'Retail Row']);
@@ -273,7 +273,7 @@ bot.on('message', function (message) {
                     (['nw', 'e'].indexOf(start) > -1 && ['nw', 'e'].indexOf(end) > -1 ) ||
                     (['w', 'se'].indexOf(start) > -1 && ['w', 'se'].indexOf(end) > -1 ) ||
                     (['n', 's'].indexOf(start) > -1 && ['n', 's'].indexOf(end) > -1 ) ||
-                    (['n', 'sw'].indexOf(start) > -1 && ['n', 'sw'].indexOf(end) > -1 ) ||
+                    (['n', 'se'].indexOf(start) > -1 && ['n', 'se'].indexOf(end) > -1 ) ||
                     (['n', 'e'].indexOf(start) > -1 && ['n', 'e'].indexOf(end) > -1 ) ||
                     (['ne', 's'].indexOf(start) > -1 && ['ne', 's'].indexOf(end) > -1 ) ||
                     (['ne', 'sw'].indexOf(start) > -1 && ['ne', 'sw'].indexOf(end) > -1 ) ||
@@ -295,6 +295,10 @@ bot.on('message', function (message) {
                     (['w', 'e'].indexOf(start) > -1 && ['w', 'e'].indexOf(end) > -1 )
                 ) {
                     locations.push('Salty Springs');
+                }
+
+                if ((['n', 'se'].indexOf(start) > -1 && ['n', 'se'].indexOf(end) > -1 )) {
+                    locations.push('Retail Row');
                 }
 
                 var rand = Math.floor(Math.random() * locations.length);
