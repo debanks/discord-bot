@@ -425,31 +425,31 @@ bot.on('message', function (message) {
                     message.channel.send(text);
                 }
                 break;
-            // case 'stats':
-            //     if (args.length === 0) {
-            //         message.channel.send("Invalid Syntax, use `!stats [name]`");
-            //     } else {
-            //
-            //         fortniteAPI.login().then(function () {
-            //
-            //             fortniteAPI
-            //                 .getStatsBR(args[0], "pc")
-            //                 .then(function (stats) {
-            //                     message.channel.send("```" +
-            //                         getSpacedText('Stat', 9, true) + ' | ' + getSpacedText('Solos', 7, false) + " | " + getSpacedText('Duos', 7, false) + " | " + getSpacedText("Squads", 7, false) + "\n" +
-            //                         "----------|---------|---------|--------\n" +
-            //                         getSpacedText('Matches', 9, true) + ' | ' + getSpacedText(stats.group.solo.matches, 7, false) + " | " + getSpacedText(stats.group.duo.matches, 7, false) + " | " + getSpacedText(stats.group.squad.matches, 7, false) + "\n" +
-            //                         getSpacedText('Wins', 9, true) + ' | ' + getSpacedText(stats.group.solo.wins, 7, false) + " | " + getSpacedText(stats.group.duo.wins, 7, false) + " | " + getSpacedText(stats.group.squad.wins, 7, false) + "\n" +
-            //                         getSpacedText('Win %', 9, true) + ' | ' + getSpacedText(stats.group.solo['win%'] + "%", 7, false) + " | " + getSpacedText(stats.group.duo['win%'] + "%", 7, false) + " | " + getSpacedText(stats.group.squad['win%'] + "%", 7, false) + "\n" +
-            //                         getSpacedText('Kills', 9, true) + ' | ' + getSpacedText(stats.group.solo.kills, 7, false) + " | " + getSpacedText(stats.group.duo.kills, 7, false) + " | " + getSpacedText(stats.group.squad.kills, 7, false) + "\n" +
-            //                         getSpacedText('K/D', 9, true) + ' | ' + getSpacedText(stats.group.solo['k/d'], 7, false) + " | " + getSpacedText(stats.group.duo['k/d'], 7, false) + " | " + getSpacedText(stats.group.squad['k/d'], 7, false) + "```");
-            //                 })
-            //                 .catch(function (err) {
-            //                     console.log(err);
-            //                 });
-            //         });
-            //     }
-            //     break;
+            case 'stats':
+                if (args.length === 0) {
+                    message.channel.send("Invalid Syntax, use `!stats [name]`");
+                } else {
+
+                    fortniteAPI.login().then(function () {
+
+                        fortniteAPI
+                            .getStatsBR(args[0], "pc")
+                            .then(function (stats) {
+                                message.channel.send("```" +
+                                    getSpacedText('Stat', 9, true) + ' | ' + getSpacedText('Solos', 7, false) + " | " + getSpacedText('Duos', 7, false) + " | " + getSpacedText("Squads", 7, false) + "\n" +
+                                    "----------|---------|---------|--------\n" +
+                                    getSpacedText('Matches', 9, true) + ' | ' + getSpacedText(stats.group.solo.matches, 7, false) + " | " + getSpacedText(stats.group.duo.matches, 7, false) + " | " + getSpacedText(stats.group.squad.matches, 7, false) + "\n" +
+                                    getSpacedText('Wins', 9, true) + ' | ' + getSpacedText(stats.group.solo.wins, 7, false) + " | " + getSpacedText(stats.group.duo.wins, 7, false) + " | " + getSpacedText(stats.group.squad.wins, 7, false) + "\n" +
+                                    getSpacedText('Win %', 9, true) + ' | ' + getSpacedText(stats.group.solo['win%'] + "%", 7, false) + " | " + getSpacedText(stats.group.duo['win%'] + "%", 7, false) + " | " + getSpacedText(stats.group.squad['win%'] + "%", 7, false) + "\n" +
+                                    getSpacedText('Kills', 9, true) + ' | ' + getSpacedText(stats.group.solo.kills, 7, false) + " | " + getSpacedText(stats.group.duo.kills, 7, false) + " | " + getSpacedText(stats.group.squad.kills, 7, false) + "\n" +
+                                    getSpacedText('K/D', 9, true) + ' | ' + getSpacedText(stats.group.solo['k/d'], 7, false) + " | " + getSpacedText(stats.group.duo['k/d'], 7, false) + " | " + getSpacedText(stats.group.squad['k/d'], 7, false) + "```");
+                            })
+                            .catch(function (err) {
+                                console.log(err);
+                            });
+                    });
+                }
+                break;
             default:
                 logger.info(cmd);
                 con.query('SELECT * FROM commands', function (error, results, fields) {
