@@ -197,16 +197,16 @@ bot.on('message', function (message) {
                 }
 
                 if (end === false || start === 'nw' || end === 'nw' || (['n', 'n'].indexOf(start) > -1 && ['w', 'w'].indexOf(end) > -1 )) {
-                    locations = locations.concat(['Junk Junction', 'Haunted Hills', 'Pleasant Park', 'Large Soccer Stadium']);
+                    locations = locations.concat(['Junk Junction', 'Haunted Hills', 'Pleasant Park']);
                     if (start === 'nw') {
-                        locations = locations.concat(['Junk Junction', 'Haunted Hills', 'Pleasant Park', 'Large Soccer Stadium']);
+                        locations = locations.concat(['Junk Junction', 'Haunted Hills', 'Pleasant Park']);
                     }
                 }
 
                 if (end === false || start === 'n' || end === 'n' || (['nw', 'ne'].indexOf(start) > -1 && ['nw', 'ne'].indexOf(end) > -1 )) {
-                    locations = locations.concat(['Anarchy Acres', 'Motel']);
+                    locations = locations.concat(['Lazy Links', 'Motel']);
                     if (start === 'n') {
-                        locations = locations.concat(['Anarchy Acres', 'Motel']);
+                        locations = locations.concat(['Lazy Links', 'Motel']);
                     }
                 }
 
@@ -218,9 +218,9 @@ bot.on('message', function (message) {
                 }
 
                 if (end === false || start === 'w' || end === 'w' || (['nw', 'sw'].indexOf(start) > -1 && ['nw', 'sw'].indexOf(end) > -1 )) {
-                    locations = locations.concat(['Snobby Shores', 'Small Soccer Stadium']);
+                    locations = locations.concat(['Snobby Shores', 'Small Soccer Stadium', 'Viking Boat']);
                     if (start === 'w') {
-                        locations = locations.concat(['Snobby Shores', 'Small Soccer Stadium']);
+                        locations = locations.concat(['Snobby Shores', 'Small Soccer Stadium', 'Viking Boat']);
                     }
                 }
 
@@ -239,16 +239,16 @@ bot.on('message', function (message) {
                 }
 
                 if (end === false || start === 'se' || end === 'se' || (['s', 's'].indexOf(start) > -1 && ['e', 'e'].indexOf(end) > -1 )) {
-                    locations = locations.concat(['Moisty Mire', 'Prison']);
+                    locations = locations.concat(['Paradise Palms']);
                     if (start === 'se') {
-                        locations = locations.concat(['Moisty Mire', 'Prison']);
+                        locations = locations.concat(['Paradise Palms']);
                     }
                 }
 
                 if (end === false || start === 'e' || end === 'e' || (['ne', 'se'].indexOf(start) > -1 && ['ne', 'se'].indexOf(end) > -1 )) {
-                    locations = locations.concat(['Lonely Lodge', 'Retail Row', 'Metal Containers']);
+                    locations = locations.concat(['Lonely Lodge', 'Retail Row', 'Metal Containers', 'Race Track']);
                     if (start === 'e') {
-                        locations = locations.concat(['Lonely Lodge', 'Retail Row', 'Metal Containers']);
+                        locations = locations.concat(['Lonely Lodge', 'Retail Row', 'Metal Containers', 'Race Track']);
                     }
                 }
 
