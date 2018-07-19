@@ -434,7 +434,7 @@ bot.on('message', function (message) {
                             color: 16760410,
                             title: args[0],
                             url: 'http://fortnite.davisbanks.com/fortnite-stats/' + args[0],
-                            image: 'http://api.fortnite.davisbanks.com/api/image/' + args[0]
+                            image: {url: 'http://api.fortnite.davisbanks.com/api/image/' + args[0]}
                         }
                     });
                 }
